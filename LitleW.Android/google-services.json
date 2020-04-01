@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "631962306174",
+    "firebase_url": "https://litlew.firebaseio.com",
+    "project_id": "litlew",
+    "storage_bucket": "litlew.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631962306174:android:bee68b9aaa965ed726ba2f",
+        "android_client_info": {
+          "package_name": "deskit.ru.litlew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631962306174-jg3p2gfpdgto3e8f4ih707rnistpjfr3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkCDZzVNNUuNBuLI5Dk7tKRTRH7u30TIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631962306174-jg3p2gfpdgto3e8f4ih707rnistpjfr3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

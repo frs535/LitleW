@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LitleW.Views.GoodView"
+             xmlns:template="clr-namespace:LitleW.Views.Templates">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ScanExecute}" Text="Scan"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <template:CatalogItemTemplate Grid.Column="1" Grid.Row="0" Catalog="{Binding Good.Catalog}" Label="Catalog" CatalogFont="Bold"/>
+            <template:CatalogItemTemplate Grid.Column="1" Grid.Row="1" Catalog="{Binding Good.Serie}" Label="Serie"/>
+
+            <template:CatalogItemTemplate Grid.Column="1" Grid.Row="2" Catalog="{Binding Good.Unit}" Label="Unit"/>
+
+            <template:FieldTemplate Grid.Column="1" Grid.Row="3" Field="{Binding Good.Count}" Label="Count"/>
+
+            <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Good.ActualQuantity}" Keyboard="Numeric" Placeholder="Actual count"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

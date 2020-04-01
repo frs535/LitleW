@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LitleW.Views.LoginView"
+             xmlns:vm="clr-namespace:LitleW.ViewModels">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ScanExecute}" Text="Scan"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="1" Grid.Row="1">
+                <Label Text="Login:"/>
+                <Entry Text="{Binding Login}"/>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Grid.Row="2">
+                <Label Text="Password:"/>
+                <Entry Text="{Binding Password}" IsPassword="True"/>
+            </StackLayout>
+
+            <Button Grid.Column="1" Grid.Row="3" Text="Login" Command="{Binding LoginCommand}"/>
+
+            <ActivityIndicator Grid.RowSpan="4" Grid.ColumnSpan="3" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
