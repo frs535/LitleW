@@ -2,7 +2,8 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="LitleW.Views.WorkSpaceView"
-            xmlns:vw="clr-namespace:LitleW.Views">
+            xmlns:vw="clr-namespace:LitleW.Views"
+            NavigationPage.HasBackButton="False">
     <vw:NotificationView Title="Task"/>
     <vw:OrdersView Title="Orders"/>
     <vw:InventoriesView Title="Inventories"/>

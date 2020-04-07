@@ -11,7 +11,8 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
-            <CollectionView ItemsSource="{Binding Inventories}">
+            <CollectionView ItemsSource="{Binding Inventories}"
+                            EmptyView="No inventories">
 
             </CollectionView>
             <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>

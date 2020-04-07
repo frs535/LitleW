@@ -1,22 +1,22 @@
-﻿using System;
-using LitleW.Helpers;
+﻿using LitleW.Helpers;
 using LitleW.Services;
-using System.Collections.Generic;
-using LitleW.Models.Base;
 
 namespace LitleW
 {
     public class GlobalSetting
     {
-        public const string DefaultEndpoint = "https://dev.deskit.ru";
         private readonly IRequestProvider _requestProvider;
-        private const string baseUrl = "https://dev.deskit.ru/prommix_vp_full/hs";
-        
+
         public GlobalSetting()
         {
             _requestProvider = new RequestProvider();
 
-            ServiceEndPoint = UriHelper.CombineUri(baseUrl, "Warehouse");
+            baseName = GetAppSetting("baseName", string.Empty).ToString();
+            serverName = GetAppSetting("serverName", string.Empty).ToString();
+#if DEBUG
+            login = GetAppSetting("loginDebug", string.Empty).ToString();
+            passwod = GetAppSetting("passwodDebug", string.Empty).ToString();
+#endif
         }
 
         public static GlobalSetting Instance { get; } = new GlobalSetting();
@@ -28,14 +28,86 @@ namespace LitleW
 
         public bool IsAuthenticated { get; set; }
 
-        public string ServiceEndPoint { get; set; }
+        public string ServiceEndPoint
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(serverName) || string.IsNullOrEmpty(baseName))
+                    return string.Empty;
 
-        public string Login { get; set; }
+                return $"https://{serverName}/{baseName}/hs/Warehouse";
+            }
+        }
 
-        public string Password { get; set; }
+        private string baseName = string.Empty;
+        public string BaseName
+        {
+            get => baseName;
+            set
+            {
+                baseName = value;
+                UpdateAppSetting("baseName", value);
+            }
+        }
+
+        private string serverName = string.Empty;
+        public string ServerName
+        {
+            get => serverName;
+            set
+            {
+                serverName = value;
+                UpdateAppSetting("serverName", value);
+            }
+        }
+
+        private string login = string.Empty;
+        public string Login
+        {
+            get => login;
+            set
+            {
+                login = value;
+#if DEBUG
+                UpdateAppSetting("loginDebug", login);
+#endif
+            }
+        }
+
+        private string passwod = string.Empty;
+        public string Password
+        {
+            get => passwod;
+            set
+            {
+                passwod = value;
+#if DEBUG
+                UpdateAppSetting("passwodDebug", passwod);
+#endif
+            }
+        }
 
         public bool UseSeries { get; set; }
 
         public bool UseSpecifications { get; set; }
+
+        private void UpdateAppSetting(string key, object value)
+        {
+            if (Xamarin.Forms.Application.Current.Properties.ContainsKey(key))
+                Xamarin.Forms.Application.Current.Properties[key] = value;
+            else
+                Xamarin.Forms.Application.Current.Properties.Add(key, value);
+        }
+
+        private object GetAppSetting(string key, object defaultValue)
+        {
+            object value;
+            Xamarin.Forms.Application.Current.Properties.TryGetValue(key, out value);
+
+            if (value is null)
+                return defaultValue;
+
+            return value;
+        }
     }
 }

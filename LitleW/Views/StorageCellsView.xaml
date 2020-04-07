@@ -20,7 +20,8 @@
 
             <CollectionView Grid.Column="1" ItemsSource="{Binding StoragesCells}"
                             SelectionMode="Single"
-                            SelectedItem="{Binding SelectedStorageCells}">
+                            SelectedItem="{Binding SelectedStorageCells}"
+                            EmptyView="No cells">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <templates:DocumentItemTemplate/>

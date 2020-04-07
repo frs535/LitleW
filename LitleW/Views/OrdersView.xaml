@@ -20,7 +20,8 @@
 
             <CollectionView Grid.Column="1" ItemsSource="{Binding OrderList}"
                             SelectionMode="Single"
-                            SelectedItem="{Binding SelectedOrder}">
+                            SelectedItem="{Binding SelectedOrder}"
+                            EmptyView="No orders">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <templates:DocumentItemTemplate/>

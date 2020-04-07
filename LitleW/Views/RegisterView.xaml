@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LitleW.Views.RegisterView"
+             xmlns:vm="clr-namespace:LitleW.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+             <StackLayout Grid.Column="1" Grid.Row="1">
+                <Label Text="Login:"/>
+                <Entry Text="{Binding Login}"/>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Grid.Row="2">
+                <Label Text="Password:"/>
+                <Entry Text="{Binding Password}" IsPassword="True"/>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Grid.Row="3">
+                <Label Text="Base:"/>
+                <Entry Text="{Binding BaseName}" Placeholder="Base name"/>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Grid.Row="4">
+                <Label Text="Server:"/>
+                <Entry Text="{Binding ServerName}" Placeholder="Server name"/>
+            </StackLayout>
+
+            <Label Grid.Column="1" Grid.Row="5" Text="{Binding ServiceEndPoint}"/>
+
+            <Button Grid.Column="1" Grid.Row="6" Text="Activate" Command="{Binding RegisterCommand}"/>
+
+            <ActivityIndicator Grid.Column="1" Grid.Row="1" Grid.RowSpan="6" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

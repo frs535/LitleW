@@ -19,7 +19,8 @@
 
             <CollectionView Grid.Column="1" ItemsSource="{Binding Notifications}"
                             SelectionMode="Single"
-                            SelectedItem="{Binding SelectedNotification}">
+                            SelectedItem="{Binding SelectedNotification}"
+                            EmptyView="No tasks">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal">

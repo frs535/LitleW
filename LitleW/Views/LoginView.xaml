@@ -4,7 +4,7 @@
              x:Class="LitleW.Views.LoginView"
              xmlns:vm="clr-namespace:LitleW.ViewModels">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding ScanExecute}" Text="Scan"/>
+        <ToolbarItem Command="{Binding ScanCommand}" Text="Scan"/>
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <vm:LoginViewModel/>
@@ -13,6 +13,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -35,8 +36,9 @@
             </StackLayout>
 
             <Button Grid.Column="1" Grid.Row="3" Text="Login" Command="{Binding LoginCommand}"/>
+            <Button Grid.Column="1" Grid.Row="4" Text="Not activated?" Command="{Binding ActivateCommand}"/>
 
-            <ActivityIndicator Grid.RowSpan="4" Grid.ColumnSpan="3" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+            <ActivityIndicator Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

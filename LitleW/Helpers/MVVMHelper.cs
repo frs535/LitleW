@@ -33,19 +33,34 @@ namespace LitleW.Helpers
             await App.Current.MainPage.Navigation.PushAsync(page);
         }
 
+        public static async void LoginPage()
+        {
+            if (App.Current.MainPage == null)
+            {
+                App.Current.MainPage = new NavigationPage(new LoginView());
+                return;
+            }
+
+            var page = new LoginView();
+            await App.Current.MainPage.Navigation.PushAsync(page);
+        }
+
+        public static async void RegisterPage()
+        {
+            var page = new RegisterView();
+            await App.Current.MainPage.Navigation.PushAsync(page);
+        }
+
         public static async Task PopAsync()
         {
             await App.Current.MainPage.Navigation.PopAsync();
         }
 
-        public static void LoginPage()
+        public static async void WorkSpacePage()
         {
-            App.Current.MainPage = new Views.LoginView();
-        }
-
-        public static void WorkSpacePage()
-        {
-            App.Current.MainPage = new NavigationPage(new WorkSpaceView());
+            var page = new WorkSpaceView();
+            
+            await App.Current.MainPage.Navigation.PushAsync(page);
         }
 
     }

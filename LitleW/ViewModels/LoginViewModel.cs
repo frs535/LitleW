@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using LitleW.Helpers;
 using LitleW.Services;
-using LitleW.Views;
 using Xamarin.Forms;
 
 namespace LitleW.ViewModels
@@ -13,14 +12,18 @@ namespace LitleW.ViewModels
         #region Commands
 
         public ICommand LoginCommand => new Command(async () => await LoginCommandExecute());
+        public ICommand ActivateCommand => new Command(MVVMHelper.RegisterPage);
+        public ICommand ScanCommand => new Command(async () => await ScanCommandExecute());
 
         #endregion Commands
 
         public LoginViewModel()
         {
+            
+
 #if DEBUG
-            login = "exchange";
-            password = "111396";
+            login = GlobalSetting.Instance.Login;
+            password = GlobalSetting.Instance.Password;
 #endif
         }
 
@@ -29,7 +32,7 @@ namespace LitleW.ViewModels
         private string login = string.Empty;
         public string Login
         {
-            get { return login; }
+            get => login;
             set
             {
                 login = value;
@@ -40,13 +43,15 @@ namespace LitleW.ViewModels
         private string password = string.Empty;
         public string Password
         {
-            get { return password; }
+            get => password;
             set
             {
                 password = value;
                 OnPropertyChanged("Password");
             }
         }
+
+        
 
         #endregion Properties
 
@@ -55,7 +60,7 @@ namespace LitleW.ViewModels
         private async Task LoginCommandExecute()
         {
             if (string.IsNullOrEmpty(Login))
-                throw new ArgumentNullException("Loin is empty");
+                throw new ArgumentNullException("Loпin is empty");
 
             IsBusy = true;
 
@@ -64,6 +69,16 @@ namespace LitleW.ViewModels
 
             if (result)
                 MVVMHelper.WorkSpacePage();
+
+            IsBusy = false;
+        }
+
+        private async Task ScanCommandExecute()
+        {
+            IsBusy = true;
+
+            var scanner = DependencyService.Get<Scaner>();
+            var result = await scanner.ScanAsync();
 
             IsBusy = false;
         }

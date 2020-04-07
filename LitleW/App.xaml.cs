@@ -52,6 +52,7 @@ namespace LitleW
 
         protected override void OnResume()
         {
+
         }
     }
 }
